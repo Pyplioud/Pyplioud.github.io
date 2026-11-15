@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrei Ryuji Ito Marca | Meteorology & Space Weather</title>
     
-    <!-- Link corrigido da fonte Sora -->
+    <!-- Fonte Sora -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -49,6 +49,7 @@
             z-index: -1;
         }
 
+        /* Cartão com Outline Azul Ciano */
         .card {
             background: rgba(15, 23, 42, 0.60);
             backdrop-filter: blur(18px);
@@ -64,6 +65,7 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
+        /* Foto de Perfil com Outline Dourado/Crepúsculo */
         .avatar-wrapper {
             position: relative;
             width: 108px;
@@ -71,8 +73,8 @@
             margin: 0 auto 20px;
             border-radius: 50%;
             padding: 3px;
-            background: linear-gradient(135deg, #38bdf8, #818cf8);
-            box-shadow: 0 0 24px rgba(56, 189, 248, 0.3);
+            background: linear-gradient(135deg, #fbbf24, #f97316, #818cf8);
+            box-shadow: 0 0 24px rgba(251, 191, 36, 0.28);
         }
 
         .avatar {
@@ -113,6 +115,7 @@
             gap: 12px;
         }
 
+        /* Botões com Hover Dourado */
         .btn {
             display: flex;
             align-items: center;
@@ -125,15 +128,23 @@
             font-size: 0.95rem;
             font-weight: 500;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn:hover {
-            background: rgba(56, 189, 248, 0.2);
-            border-color: #38bdf8;
+            background: rgba(251, 191, 36, 0.16);
+            border-color: rgba(251, 191, 36, 0.65);
             color: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px -6px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 10px 20px -8px rgba(251, 191, 36, 0.35);
+        }
+
+        /* Estado quando o e-mail é copiado */
+        .btn.copied {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+            color: #86efac;
         }
 
         footer {
@@ -145,16 +156,14 @@
 </head>
 <body>
 
-    <!-- Apontando para background.mp4 -->
-    <video autoplay muted loop playsinline id="bg-video">
-        <source src="background.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline preload="auto" id="bg-video">
+        <source src="./background.mp4" type="video/mp4">
     </video>
     <div class="overlay"></div>
 
     <main class="card">
-        <!-- Apontando diretamente para profile.jpg -->
         <div class="avatar-wrapper">
-            <img src="profile.jpg" alt="Andrei Ryuji Ito Marca" class="avatar">
+            <img src="./profile.jpg" alt="Andrei Ryuji Ito Marca" class="avatar">
         </div>
         
         <h1>Andrei Ryuji Ito Marca</h1>
@@ -168,13 +177,30 @@
             <a href="https://github.com" target="_blank" class="btn">My GitHub</a>
             <a href="https://linkedin.com" target="_blank" class="btn">LinkedIn</a>
             <a href="https://github.com/UR-Solar-Deep-Learning" target="_blank" class="btn">Current Project</a>
-            <a href="mailto:andreirymarca@gmail.com" class="btn">Contact me!</a>
+            <button type="button" id="copy-email-btn" class="btn">Contact me!</button>
         </div>
 
         <footer>
             Atmos & Space Weather • GitHub Pages
         </footer>
     </main>
+
+    <script>
+        const copyBtn = document.getElementById('copy-email-btn');
+        const myEmail = 'andreirymarca@gmail.com';
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(myEmail).then(() => {
+                copyBtn.textContent = 'Email copied! (' + myEmail + ')';
+                copyBtn.classList.add('copied');
+
+                setTimeout(() => {
+                    copyBtn.textContent = 'Contact me!';
+                    copyBtn.classList.remove('copied');
+                }, 3000);
+            });
+        });
+    </script>
 
 </body>
 </html>
