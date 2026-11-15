@@ -3,124 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio</title>
+    <title>Estação Pessoal | Meteorologia & Space Weather</title>
     <style>
-        /* Reset e Estilos Base */
+        /* Reset e Fontes */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
         }
 
         body {
-            background-color: #0f172a;
             color: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            overflow-x: hidden;
+            background-color: #0b1120; /* Cor de reserva enquanto o vídeo carrega */
         }
 
-        /* Cartão Principal */
-        .card {
-            background-color: #1e293b;
-            max-width: 480px;
-            width: 100%;
-            padding: 40px 30px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 1px solid #334155;
-        }
-
-        /* Foto de Perfil */
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+        /* Vídeo em Loop no Fundo */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             object-fit: cover;
-            border: 3px solid #38bdf8;
-            margin-bottom: 16px;
+            z-index: -2;
         }
 
-        /* Textos */
-        h1 {
-            font-size: 1.5rem;
+        /* Camada escura para garantir leitura dos textos */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(180deg, rgba(11, 17, 32, 0.55) 0%, rgba(11, 17, 32, 0.85) 100%);
+            z-index: -1;
+        }
+
+        /* Container Principal estilo Dashboard */
+        .dashboard {
+            max-width: 820px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Estilo Glassmorphism (Vidro Fosco) */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Barra Superior (Estilo Estação Meteorológica) */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 14px 24px;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #38bdf8;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #22c55e;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        .clock {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        /* Perfil / Apresentação */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .avatar {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            border: 2px solid #38bdf8;
+            object-fit: cover;
+        }
+
+        .profile-info h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .profile-info .role {
+            color: #38bdf8;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .profile-info p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            max-width: 600px;
+        }
+
+        /* Grade de Projetos (Estilo Cards de Previsão) */
+        .section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            margin-bottom: 14px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 18px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: #38bdf8;
+            background: rgba(30, 41, 59, 0.85);
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.15);
+            padding: 3px 8px;
+            border-radius: 6px;
+            align-self: flex-start;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .project-card h3 {
+            font-size: 1.1rem;
             margin-bottom: 6px;
         }
 
-        .subtitle {
-            color: #38bdf8;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 16px;
-        }
-
-        .bio {
+        .project-card p {
+            font-size: 0.88rem;
             color: #94a3b8;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 28px;
+            line-height: 1.4;
         }
 
-        /* Lista de Botões/Links */
-        .links {
+        /* Rodapé e Links Sociais */
+        .social-links {
             display: flex;
-            flex-direction: column;
             gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 16px;
         }
 
-        .btn {
-            display: block;
-            background-color: #334155;
+        .social-btn {
+            background: rgba(255, 255, 255, 0.08);
             color: #f8fafc;
             text-decoration: none;
-            padding: 14px 20px;
-            border-radius: 10px;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.2s;
         }
 
-        .btn:hover {
-            background-color: #38bdf8;
+        .social-btn:hover {
+            background: #38bdf8;
             color: #0f172a;
-            transform: translateY(-2px);
-        }
-
-        /* Rodapé */
-        footer {
-            margin-top: 28px;
-            font-size: 0.8rem;
-            color: #64748b;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <main class="card">
-        <!-- Substitua o link abaixo pela URL da sua foto (ou pelo link da sua foto do GitHub) -->
-        <img src="https://github.com" alt="Foto de Perfil" class="avatar">
-        
-        <h1>Seu Nome Aqui</h1>
-        <p class="subtitle">Desenvolvedor • Designer • Criador</p>
-        
-        <p class="bio">
-            Olá! Bem-vindo à minha página pessoal. Aqui você encontra meus principais projetos, artigos e formas de entrar em contato.
-        </p>
+    <!-- Vídeo de Fundo em Loop -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="fundo.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
 
-        <div class="links">
-            <a href="https://github.com" target="_blank" class="btn">Meu GitHub</a>
-            <a href="https://linkedin.com" target="_blank" class="btn">LinkedIn</a>
-            <a href="#" target="_blank" class="btn">Meu Projeto Principal</a>
-            <a href="mailto:seuemail@exemplo.com" class="btn">Entrar em Contato</a>
-        </div>
+    <main class="dashboard">
+        
+        <!-- Barra Superior Estilo Estação / Telemetria -->
+        <header class="glass-panel top-bar">
+            <div class="status-badge">
+                <span class="pulse-dot"></span>
+                <span>ATMOS & SPACE WEATHER LAB</span>
+            </div>
+            <div class="clock" id="utc-clock">UTC --:--:--</div>
+        </header>
 
-        <footer>
-            Feito com GitHub Pages
-        </footer>
+        <!-- Painel Principal do Perfil -->
+        <section class="glass-panel">
+            <div class="profile-header">
+                <img src="https://github.com" alt="Avatar" class="avatar">
+                <div class="profile-info">
+                    <h1>Seu Nome</h1>
+                    <div class="role">Meteorologia • Clima Espacial • Ciência de Dados</div>
+                    <p>
+                        Desenvolvendo ferramentas, modelos e visualizações para monitoramento atmosférico, tempestades severas e atividade solar.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com" target="_blank" class="social-btn">GitHub</a>
+                        <a href="https://linkedin.com" target="_blank" class="social-btn">LinkedIn</a>
+                        <a href="mailto:seuemail@exemplo.com" class="social-btn">Contato</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grade de Projetos -->
+        <section class="glass-panel">
+            <div class="section-title">Monitoramento & Projetos Ativos</div>
+            <div class="projects-grid">
+                
+                <a href="#" target="_blank" class="project-card">
+                    <div>
+                        <span class="project-tag">METEOROLOGIA</span>
+                        <h3>Radar & Tempestades</h3>
+                        <p>Análise de dados meteorológicos, convecção severa e visualização de sistemas atmosféricos.</p>
+                    </div>
+                </a>
+
+                <a href="#" target="_blank" class="project-card">
+                    <div>
+                        <span class="project-tag">SPACE WEATHER</span>
+                        <h3>Índice Kp & Vento Solar</h3>
+                        <p>Monitoramento de tempestades geomagnéticas, ejeções de massa coronal (CME) e fluxo solar.</p>
+                    </div>
+                </a>
+
+                <a href="#" target="_blank" class="project-card">
+                    <div>
+                        <span class="project-tag">MODELAGEM / PYTHON</span>
+                        <h3>Scripts & Previsão</h3>
+                        <p>Automação de coleta de dados climáticos, satélites e processamento de séries temporais.</p>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
     </main>
+
+    <!-- Script simples para exibir o Relógio UTC em tempo real (padrão na meteorologia) -->
+    <script>
+        function updateUTCClock() {
+            const now = new Date();
+            const utcString = now.toISOString().substring(11, 19);
+            document.getElementById('utc-clock').textContent = `SYS TIME: ${utcString} UTC`;
+        }
+        setInterval(updateUTCClock, 1000);
+        updateUTCClock();
+    </script>
 
 </body>
 </html>
