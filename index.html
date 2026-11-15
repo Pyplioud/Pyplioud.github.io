@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrei Ryuji Ito Marca | Meteorology & Space Weather</title>
     
-    <!-- ONDE AS FONTES SÃO IMPORTADAS DO GOOGLE FONTS -->
+    <!-- Link corrigido da fonte Sora -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* ONDE A FONTE É APLICADA NO SITE TODO */
             font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
@@ -30,7 +29,6 @@
             overflow-x: hidden;
         }
 
-        /* Vídeo em Loop no Fundo */
         #bg-video {
             position: fixed;
             top: 0;
@@ -41,7 +39,6 @@
             z-index: -2;
         }
 
-        /* Vinheta suave */
         .overlay {
             position: fixed;
             top: 0;
@@ -52,7 +49,6 @@
             z-index: -1;
         }
 
-        /* Cartão Principal com Outline Azul Ciano */
         .card {
             background: rgba(15, 23, 42, 0.60);
             backdrop-filter: blur(18px);
@@ -62,13 +58,12 @@
             padding: 40px 32px 30px;
             border-radius: 28px;
             text-align: center;
-            border: 1px solid rgba(56, 189, 248, 0.35); /* Outline azul de volta */
+            border: 1px solid rgba(56, 189, 248, 0.35);
             box-shadow: 
                 0 25px 50px -12px rgba(0, 0, 0, 0.65),
                 inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
-        /* Foto de Perfil com Outline Azul Ciano */
         .avatar-wrapper {
             position: relative;
             width: 108px;
@@ -76,7 +71,7 @@
             margin: 0 auto 20px;
             border-radius: 50%;
             padding: 3px;
-            background: linear-gradient(135deg, #38bdf8, #818cf8); /* Anel azul de volta */
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
             box-shadow: 0 0 24px rgba(56, 189, 248, 0.3);
         }
 
@@ -89,7 +84,6 @@
             display: block;
         }
 
-        /* Textos */
         h1 {
             font-size: 1.6rem;
             font-weight: 700;
@@ -113,7 +107,6 @@
             font-weight: 400;
         }
 
-        /* Botões */
         .links {
             display: flex;
             flex-direction: column;
@@ -143,7 +136,6 @@
             box-shadow: 0 8px 20px -6px rgba(56, 189, 248, 0.4);
         }
 
-        /* Rodapé */
         footer {
             margin-top: 28px;
             font-size: 0.78rem;
@@ -153,14 +145,14 @@
 </head>
 <body>
 
-    <!-- Vídeo de Fundo em Loop -->
+    <!-- Apontando para background.mp4 -->
     <video autoplay muted loop playsinline id="bg-video">
-        <source src="fundo.mp4" type="video/mp4">
+        <source src="background.mp4" type="video/mp4">
     </video>
     <div class="overlay"></div>
 
     <main class="card">
-        <!-- Foto de Perfil: suba um arquivo chamado perfil.jpg na mesma pasta -->
+        <!-- Apontando diretamente para profile.jpg -->
         <div class="avatar-wrapper">
             <img src="profile.jpg" alt="Andrei Ryuji Ito Marca" class="avatar">
         </div>
@@ -173,10 +165,9 @@
         </p>
 
         <div class="links">
-            <!-- Substitua os links dentro de href="..." -->
-            <a href="https://github.com/Pyplioud" target="_blank" class="btn">My GitHub</a>
-            <a href="https://www.linkedin.com/in/andrei-ryuji-ito-marca-51b975381/" target="_blank" class="btn">LinkedIn</a>
-            <a href="https://github.com/Pyplioud/UR-Solar-Deep-Learning" target="_blank" class="btn">Current Project</a>
+            <a href="https://github.com" target="_blank" class="btn">My GitHub</a>
+            <a href="https://linkedin.com" target="_blank" class="btn">LinkedIn</a>
+            <a href="https://github.com/UR-Solar-Deep-Learning" target="_blank" class="btn">Current Project</a>
             <a href="mailto:andreirymarca@gmail.com" class="btn">Contact me!</a>
         </div>
 
