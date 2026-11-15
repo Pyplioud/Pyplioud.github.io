@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrei Ryuji Ito Marca | Meteorology & Space Weather</title>
     
-    <!-- Fonte mais aconchegante e moderna (Plus Jakarta Sans) -->
+    <!-- ONDE AS FONTES SÃO IMPORTADAS DO GOOGLE FONTS -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            /* ONDE A FONTE É APLICADA NO SITE TODO */
+            font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
@@ -51,9 +52,9 @@
             z-index: -1;
         }
 
-        /* Cartão Principal com tons quentes/crepusculares */
+        /* Cartão Principal com Outline Azul Ciano */
         .card {
-            background: rgba(18, 22, 36, 0.62);
+            background: rgba(15, 23, 42, 0.60);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
             max-width: 430px;
@@ -61,13 +62,13 @@
             padding: 40px 32px 30px;
             border-radius: 28px;
             text-align: center;
-            border: 1px solid rgba(251, 191, 36, 0.16);
+            border: 1px solid rgba(56, 189, 248, 0.35); /* Outline azul de volta */
             box-shadow: 
                 0 25px 50px -12px rgba(0, 0, 0, 0.65),
-                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
-        /* Foto de Perfil com Outline Dourado/Crepúsculo */
+        /* Foto de Perfil com Outline Azul Ciano */
         .avatar-wrapper {
             position: relative;
             width: 108px;
@@ -75,8 +76,8 @@
             margin: 0 auto 20px;
             border-radius: 50%;
             padding: 3px;
-            background: linear-gradient(135deg, #fbbf24, #f97316, #818cf8);
-            box-shadow: 0 0 24px rgba(251, 191, 36, 0.25);
+            background: linear-gradient(135deg, #38bdf8, #818cf8); /* Anel azul de volta */
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.3);
         }
 
         .avatar {
@@ -84,35 +85,35 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            background-color: #1e2436;
+            background-color: #1e293b;
             display: block;
         }
 
         /* Textos */
         h1 {
-            font-size: 1.55rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            letter-spacing: -0.4px;
+            letter-spacing: -0.3px;
             margin-bottom: 6px;
             color: #ffffff;
         }
 
         .subtitle {
-            color: #fbbf24; /* Dourado suave combinando com o horizonte do vídeo */
-            font-size: 0.9rem;
+            color: #38bdf8;
+            font-size: 0.92rem;
             font-weight: 500;
             margin-bottom: 16px;
         }
 
         .bio {
             color: #e2e8f0;
-            font-size: 0.94rem;
+            font-size: 0.95rem;
             line-height: 1.65;
             margin-bottom: 28px;
             font-weight: 400;
         }
 
-        /* Botões Aconchegantes */
+        /* Botões */
         .links {
             display: flex;
             flex-direction: column;
@@ -130,16 +131,16 @@
             border-radius: 14px;
             font-size: 0.95rem;
             font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn:hover {
-            background: rgba(251, 191, 36, 0.16);
-            border-color: rgba(251, 191, 36, 0.6);
+            background: rgba(56, 189, 248, 0.2);
+            border-color: #38bdf8;
             color: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px -8px rgba(251, 191, 36, 0.35);
+            box-shadow: 0 8px 20px -6px rgba(56, 189, 248, 0.4);
         }
 
         /* Rodapé */
@@ -154,14 +155,14 @@
 
     <!-- Vídeo de Fundo em Loop -->
     <video autoplay muted loop playsinline id="bg-video">
-        <source src="background.mp4" type="video/mp4">
+        <source src="fundo.mp4" type="video/mp4">
     </video>
     <div class="overlay"></div>
 
     <main class="card">
-        <!-- Foto de Perfil: Substitua SEU-USUARIO pelo seu login do GitHub -->
+        <!-- Foto de Perfil: suba um arquivo chamado perfil.jpg na mesma pasta -->
         <div class="avatar-wrapper">
-            <img src="https://githubusercontent.com" alt="Andrei Ryuji Ito Marca" class="avatar">
+            <img src="profile.jpg" alt="Andrei Ryuji Ito Marca" class="avatar">
         </div>
         
         <h1>Andrei Ryuji Ito Marca</h1>
